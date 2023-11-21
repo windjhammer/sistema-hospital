@@ -1,7 +1,7 @@
+import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Scanner;
 
 public class Hospital {
     public static void main(String[] args) {
@@ -19,8 +19,9 @@ public class Hospital {
             System.out.println("3. Agendar Consulta");
             System.out.println("4. Sair");
             System.out.print("Escolha a opção: ");
-            
+
             escolha = scanner.nextInt();
+            scanner.nextLine(); 
 
             switch (escolha) {
                 case 1:
@@ -45,14 +46,13 @@ public class Hospital {
 
     private static void cadastrarMedico(Scanner scanner, List<Medico> medicos) {
         System.out.print("Nome do Médico: ");
-        scanner.nextLine();
         String nome = scanner.nextLine();
-        System.out.print("CPF do Médico: ");
-        String cpf = scanner.nextLine();
+        System.out.print("CRM do Médico: ");
+        String crm = scanner.nextLine();  
         System.out.print("Especialidade do Médico: ");
         String especialidade = scanner.nextLine();
 
-        Medico novoMedico = new Medico(nome, cpf, especialidade);
+        Medico novoMedico = new Medico(nome, crm, especialidade);
         medicos.add(novoMedico);
 
         System.out.println("Médico cadastrado com sucesso!");
@@ -60,7 +60,6 @@ public class Hospital {
 
     private static void cadastrarPaciente(Scanner scanner, List<Paciente> pacientes) {
         System.out.print("Nome do Paciente: ");
-        scanner.nextLine();
         String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
         String cpf = scanner.nextLine();
@@ -74,13 +73,24 @@ public class Hospital {
     private static void agendarConsulta(Scanner scanner, List<Medico> medicos, List<Paciente> pacientes, List<Consulta> consultas) {
         System.out.println("### Agendamento de Consulta ###");
 
+        if (medicos.isEmpty()) {
+            System.out.println("Erro: Não há médicos cadastrados. Cadastre pelo menos um médico antes de agendar uma consulta.");
+            return;
+        }
+
         System.out.println("Médicos Disponíveis:");
         for (int i = 0; i < medicos.size(); i++) {
-            System.out.println((i + 1) + ". " + medicos.get(i).getNome() + " - " + medicos.get(i).getEspecialidade());
+            System.out.println((i + 1) + ". " + medicos.get(i).getNome() + " (CRM: " + medicos.get(i).getCrm() + ")");
         }
 
         System.out.print("Escolha o médico (número): ");
         int escolhaMedico = scanner.nextInt();
+
+        if (escolhaMedico < 1 || escolhaMedico > medicos.size()) {
+            System.out.println("Erro: Escolha de médico inválida. Tente novamente.");
+            return;
+        }
+
         Medico medicoEscolhido = medicos.get(escolhaMedico - 1);
 
         System.out.println("Pacientes Disponíveis:");
@@ -90,6 +100,12 @@ public class Hospital {
 
         System.out.print("Escolha o paciente (número): ");
         int escolhaPaciente = scanner.nextInt();
+
+        if (escolhaPaciente < 1 || escolhaPaciente > pacientes.size()) {
+            System.out.println("Erro: Escolha de paciente inválida. Tente novamente.");
+            return;
+        }
+
         Paciente pacienteEscolhido = pacientes.get(escolhaPaciente - 1);
 
         Consulta novaConsulta = new Consulta(new Date(), medicoEscolhido, pacienteEscolhido);
