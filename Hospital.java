@@ -45,8 +45,8 @@ public class Hospital {
 
     private static void cadastrarMedico(Scanner scanner, List<Medico> medicos) {
         System.out.print("Nome do Médico: ");
-        String nome = scanner.nextLine();
         scanner.nextLine();
+        String nome = scanner.nextLine();
         System.out.print("CPF do Médico: ");
         String cpf = scanner.nextLine();
         System.out.print("Especialidade do Médico: ");
