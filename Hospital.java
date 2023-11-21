@@ -60,6 +60,7 @@ public class Hospital {
 
     private static void cadastrarPaciente(Scanner scanner, List<Paciente> pacientes) {
         System.out.print("Nome do Paciente: ");
+        scanner.nextLine();
         String nome = scanner.nextLine();
         System.out.print("CPF do Paciente: ");
         String cpf = scanner.nextLine();
