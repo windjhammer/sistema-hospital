@@ -5,7 +5,7 @@ import java.util.List;
 
 public class Hospital {
     public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
+        Scanner sc = new Scanner(System.in);
 
         List<Medico> medicos = new ArrayList<>();
         List<Paciente> pacientes = new ArrayList<>();
@@ -20,18 +20,18 @@ public class Hospital {
             System.out.println("4. Sair");
             System.out.print("Escolha a opção: ");
 
-            escolha = scanner.nextInt();
-            scanner.nextLine(); 
+            escolha = sc.nextInt();
+            sc.nextLine(); 
 
             switch (escolha) {
                 case 1:
-                    cadastrarMedico(scanner, medicos);
+                    cadastrarMedico(sc, medicos);
                     break;
                 case 2:
-                    cadastrarPaciente(scanner, pacientes);
+                    cadastrarPaciente(sc, pacientes);
                     break;
                 case 3:
-                    agendarConsulta(scanner, medicos, pacientes, consultas);
+                    agendarConsulta(sc, medicos, pacientes, consultas);
                     break;
                 case 4:
                     System.out.println("Encerrando o programa. Obrigado!");
@@ -41,7 +41,7 @@ public class Hospital {
             }
         } while (escolha != 4);
 
-        scanner.close();
+        sc.close();
     }
 
     private static void cadastrarMedico(Scanner scanner, List<Medico> medicos) {
