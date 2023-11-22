@@ -1,4 +1,6 @@
-# Revisão para a prova POO
+# Revisão para a prova POO 
+
+Exercício valendo até 4 pontos na prova.
 
 ## Criar um sistema de gerenciamento de hospital.
 
